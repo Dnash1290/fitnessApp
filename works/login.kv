@@ -2,17 +2,26 @@
 #:include new_user.kv
 
 WindowManager:
-    LoginScreen:
+    Login:
     NewUser:
 
-<LoginScreen>:
+<Login>:
     name: 'login_screen'
     Screen:
+        
         Image:
             source: 'login.png'
             size_hint: None, None
             size: root.width, root.height
             pos: root.x, root.y
+
+
+        Label:
+            id: error_label
+            text: ""
+            color: "#fc0303"
+            pos_hint: {"center_x": 0.5, "center_y": 0.56}
+
 
         MDTextField:
             id: username

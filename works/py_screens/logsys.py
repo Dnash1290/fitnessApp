@@ -1,8 +1,8 @@
-#from database_manager import database
-#db = database()
+from . import db
+
 
 def check_log(username, password):
-    #db.get_user_info(username, password)
+    db.get_user_info(username, password)
     check = False
     if password == "user1":
         check = True
@@ -32,8 +32,12 @@ def data_valid(name, surname, username, password, confirmpass):
     else: 
         check = "dont leave any fields blank"
         
-    print("sdfa")    
-    print(check)
-    print(type(check))
+  
+    print(check)#
+    
+        #if passwordid == confirmpass:
+        #alldata.make_new_user(name, surname, usernameid,passwordid)
+        #alldata.make_new_user(name, surname, usernameid,passwordid)
+        #alldata.get_user_info()
     return check
                 

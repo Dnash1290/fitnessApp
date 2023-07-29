@@ -3,9 +3,10 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
-
+from kivy.factory import Factory
 from py_screens import *
-
+from kivy.uix.modalview import ModalView
+from kivy.app import App
 
 Window.size = (360, 640)
 
@@ -14,6 +15,7 @@ class WindowManager(ScreenManager):
 
 
 class Login(Screen):
+    print("ran??")
     i = 3
     def login(self):
         usernameid = self.ids.username.text
@@ -32,10 +34,17 @@ class Login(Screen):
                     you have {self.i} chances
                 """
                 self.i -= 1
+                
         
+class PopWindow(ModalView):
+    pass
 
 
 class NewUser(Screen):
+    def openpopup(self):
+        pops = PopWindow()
+        pops.open()
+            
     def newacc(self):
         name = self.ids.newname.text
         surname = self.ids.newsurname.text
@@ -45,17 +54,13 @@ class NewUser(Screen):
         
         check = logsys.data_valid(name,surname, usernameid, passwordid, confirmpass)
         if check != "new account made":
-            error = self.ids.error_label.text = check
+            self.ids.error_label.text = check
         else: 
-            pass
+            self.openpopup()
             
-        
-        #if passwordid == confirmpass:
-        #alldata.make_new_user(name, surname, usernameid,passwordid)
-        #alldata.make_new_user(name, surname, usernameid,passwordid)
-        #alldata.get_user_info()
+            
 
-
+            
 class ForgotPassword(Screen):
     def newpass(self):
         usernameid = self.ids.username.text
@@ -79,6 +84,7 @@ class MyApp(MDApp):
         Builder.load_file("new_user.kv")
         Builder.load_file("forgot_password.kv")
         wm = WindowManager()
+        
         wm.add_widget(Login(name='login_screen'))
         wm.add_widget(NewUser(name='NewUser'))
         wm.add_widget(ForgotPassword(name="ForgotPassword"))

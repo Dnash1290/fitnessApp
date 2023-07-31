@@ -1,12 +1,8 @@
 
-from kivymd.app import MDApp
-from kivy.lang import Builder
-from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window
-from kivy.factory import Factory
+
 from py_screens import *
-from kivy.uix.modalview import ModalView
-from kivy.app import App
+from libaries import *
+from ForgotPassword import ForgotPassword
 
 Window.size = (360, 640)
 
@@ -14,16 +10,16 @@ class WindowManager(ScreenManager):
     pass
 
 
-class Login(Screen):
+class Login(Screen):                    
     print("ran??")
-    i = 3
-    def login(self):
+    i = 3                                                                   
+    def login(self):                    #this function handles the log in UI og the log in page
         usernameid = self.ids.username.text
         passwordid = self.ids.password.text
-        check = logsys.check_log(usernameid, passwordid)
+        check = logsys.check_log(usernameid, passwordid)    #imported function to vaild user input
         if check:
-            print("login in ")
-        else:
+            print("login in ")                             
+        else:                                               #outputs UI functionlty 
             if self.i <= 0:
                 MyApp().close_app()    
                 pass
@@ -40,45 +36,28 @@ class PopWindow(ModalView):
     pass
 
 
-class NewUser(Screen):
+class NewUser(Screen):                                         #this function calls the popwindow class in new user class
     def openpopup(self):
         pops = PopWindow()
         pops.open()
             
-    def newacc(self):
+    def newacc(self):                         #this function handles the log in UI og the log in page
         name = self.ids.newname.text
         surname = self.ids.newsurname.text
         usernameid = self.ids.newuser.text
         passwordid = self.ids.newpass.text
         confirmpass = self.ids.confirmpass.text
         
-        check = logsys.data_valid(name,surname, usernameid, passwordid, confirmpass)
+        check = logsys.data_valid(name,surname, usernameid, passwordid, confirmpass)   #imported function to vaild user input
         if check != "new account made":
             self.ids.error_label.text = check
         else: 
-            self.openpopup()
-            
-            
+            self.openpopup()                 
 
             
-class ForgotPassword(Screen):
-    def newpass(self):
-        usernameid = self.ids.username.text
-        confirmpassid = self.ids.confirmpass.text
-        newpasswordid = self.ids.newpass.text
-        
-        #if newpasswordid == confirmpassid:
-            #alldata.update_user_info(usernameid,newpasswordid)
-
-        #print(f"""
-
-        #username: {usernameid}
-        #new password: {newpasswordid}
-        #confirm password: {confirmpassid}
-        #""")
 
 
-class MyApp(MDApp):
+class MyApp(MDApp):        #adds all the kivy files together 
     def build(self):
         Builder.load_file("login.kv")
         Builder.load_file("new_user.kv")

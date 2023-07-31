@@ -1,8 +1,11 @@
 import sqlite3
+import os
 
 class database:
     def __init__(self) -> None:
-        self.data = sqlite3.connect("app_database.db")
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(script_directory, "app_database.db")
+        self.data = sqlite3.connect(db_path)
         self.mouse = self.data.cursor()
 
         try:
@@ -15,15 +18,18 @@ class database:
                 """
             self.mouse.execute(table)
         except:
-            print("table aready created")           
+            #print("table aready created")   
+            pass        
         
-    def get_user_info(self, username, password):
+    def get_user(self, username):
+        print("getting user data....")
         view = self.mouse.execute(f"""
         SELECT PASSWORD FROM ACCOUNT
         WHERE USERNAME = '{username}';         
         """).fetchone()
-        print(type(view))
-        print(view)
+        password = view[0]
+        print(type(password))
+        return password
         
     
     def check_user_info(self, name, surname, username,password):
@@ -45,4 +51,4 @@ class database:
         print("data sucessfully stored")
         
 #database().make_new_user("dsa","gfsdg","jhyugf","awee23")
-database().get_user_info("jhyuf","awee23")
+#database().get_user("tasin000")

@@ -1,4 +1,4 @@
-from libaries import ModalView
+from .libaries import ModalView
 
 class PopWindow(ModalView):
     pass

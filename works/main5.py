@@ -1,8 +1,7 @@
-
-
 from py_screens import *
-from libaries import *
-from ForgotPassword import ForgotPassword
+from py_screens.libaries import *
+from py_screens.ForgotPassword import ForgotPassword
+from py_screens.NewUser import NewUser 
 
 Window.size = (360, 640)
 
@@ -16,7 +15,7 @@ class Login(Screen):
     def login(self):                    #this function handles the log in UI og the log in page
         usernameid = self.ids.username.text
         passwordid = self.ids.password.text
-        check = logsys.check_log(usernameid, passwordid)    #imported function to vaild user input
+        check = libaries.check_log(usernameid, passwordid)    #imported function to vaild user input
         if check:
             print("login in ")                             
         else:                                               #outputs UI functionlty 
@@ -31,31 +30,6 @@ class Login(Screen):
                 """
                 self.i -= 1
                 
-        
-class PopWindow(ModalView):
-    pass
-
-
-class NewUser(Screen):                                         #this function calls the popwindow class in new user class
-    def openpopup(self):
-        pops = PopWindow()
-        pops.open()
-            
-    def newacc(self):                         #this function handles the log in UI og the log in page
-        name = self.ids.newname.text
-        surname = self.ids.newsurname.text
-        usernameid = self.ids.newuser.text
-        passwordid = self.ids.newpass.text
-        confirmpass = self.ids.confirmpass.text
-        
-        check = logsys.data_valid(name,surname, usernameid, passwordid, confirmpass)   #imported function to vaild user input
-        if check != "new account made":
-            self.ids.error_label.text = check
-        else: 
-            self.openpopup()                 
-
-            
-
 
 class MyApp(MDApp):        #adds all the kivy files together 
     def build(self):

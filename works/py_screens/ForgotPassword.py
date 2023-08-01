@@ -1,12 +1,22 @@
 from .libaries import Screen
 from .popup import PopWindow
-
+from . import db 
 
 def set_new_pass(username, password, confirmpass):
     check = ""
-    if password == confirmpass:
-        if username == "john":
-            check = "valid"
+    if password == confirmpass: 
+        view = db.data.execute(f"""
+        SELECT USERNAME FROM ACCOUNT
+        WHERE USERNAME = '{username}';                
+        """).fetchone() #checks if username is valid
+        try:    
+            usernamedb = view[0]
+        except:
+            usernamedb = None
+
+        if username == usernamedb:
+            check = "valid"  
+            db.update_user_password(username,password)
         else:
             check = "username not found"
     else: 

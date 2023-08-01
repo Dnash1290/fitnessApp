@@ -1,5 +1,6 @@
 from .libaries import Screen
 from .popup import PopWindow
+from . import db
 
 def data_valid(name, surname, username, password, confirmpass):
     check = ""
@@ -7,9 +8,15 @@ def data_valid(name, surname, username, password, confirmpass):
         name, surname, username, password, confirmpass
     ]):
         if name.isalpha() and surname.isalpha():
-            if username != "user1":
+            usernamedb = db.data.execute(f"""
+            SELECT USERNAME FROM ACCOUNT
+            WHERE USERNAME = '{username}';                
+            """)
+            if username != usernamedb:
                 if password == confirmpass:
                     check = "new account made"
+                    #adds the user information to database
+                    db.make_new_user(name, surname, username, password)
                     
                 else:
                     check = "confrim password not matched"

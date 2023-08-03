@@ -57,13 +57,14 @@ class database:
             '{username}',
             '{password}')
             """)
+        print(f"new user {username} is added")
         self.data.commit()
-        print("data sucessfully stored")
+
         
 
-d = database()
+
 #d.make_new_user("Yuri","Jahad","Jayuri","swordofjahadismine")
                 #name surname username and password
-d.update_user_password("Jayuri","Jahadprincess")
+
 
 

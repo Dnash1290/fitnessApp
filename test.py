@@ -4,13 +4,24 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
 from kivy.factory import Factory
-from py_screens import *
+from kivy.uix.button import Button
+
 from kivy.uix.modalview import ModalView
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.app import App
 
+Builder.load_file("kivy_gui/menu.kv")
 
-class ForgotPasswordApp(ForgotPassword, MDApp):
+
+
+class Menu(Screen):
+    def on_press(sedfg):
+        print("dsjlfvolcs")
+        pass 
+
+class MyApp(App):
     def build(self):
-        Builder.load_file("forgot_password.kv")
-        return ForgotPassword()
+        return Menu()
 
+if __name__ =="__main__":
+    MyApp().run()

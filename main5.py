@@ -12,9 +12,10 @@ class WindowManager(ScreenManager):
 
 class MyApp(MDApp):        #adds all the kivy files together 
     def build(self):
-        Builder.load_file("login.kv")
-        Builder.load_file("new_user.kv")
-        Builder.load_file("forgot_password.kv")
+
+        Builder.load_file("kivy_gui/new_user.kv")
+        Builder.load_file("kivy_gui/forgot_password.kv")
+        Builder.load_file("kivy_gui/login.kv")
         wm = WindowManager()
         
         wm.add_widget(Login(name='login_screen'))

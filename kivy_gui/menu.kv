@@ -1,4 +1,4 @@
-#:import ButtonBehavior kivy.uix.behaviors.ButtonBehavior
+
 <Menu>:
 
     Image:
@@ -30,7 +30,7 @@
                         allow_stretch: True
 
  
-                BoxLayout:         
+                BoxLayout:       #user info  
                     orientation: 'vertical'
                     padding: 5           
                     spacing: 5
@@ -88,7 +88,7 @@
                     size_hint: 0.6 , 1
                     canvas:
                         Color:
-                            rgba: 1, 5, 1, 0.3
+                            rgba: 0,6,1, 0.2
                         Rectangle:
                             pos: self.pos
                             size:self.size
@@ -105,16 +105,72 @@
                         text:"8"
                         background_color: 0,0,0,0.4
 
-            Button: 
+            BoxLayout: #navigate
                 text: "navigate"
-                size_hint_y: 2
-                
+                size_hint_y: 1
 
-            Button: 
-                text: "Graph"
-                size_hint_y: 4
+                Button:
+                    background_color: 0,0,0,0.2
+                    Image:
+                        source: 'kivy_gui/images/food_icon.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        allow_stretch: True  
 
-            Button: 
-                text: "Average"
+                Button:
+                    background_color: 0,0,0,0.2
+                    Image:
+                        source: 'kivy_gui/images/exerciser.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        allow_stretch: False
+
+            BoxLayout:   #graph
                 size_hint_y: 2
+                Image:
+                    source: 'kivy_gui/images/plot.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+     
+
+
+            BoxLayout: # last section
+                size_hint_y: 1
+                orientation: 'vertical'
+                canvas:
+                    Color:
+                        rgba: 0,6,1, 0.2
+                    Rectangle:
+                        pos: self.pos
+                        size:self.size
+
+                BoxLayout: #grid 1
+                    Button:
+                        text: 'Mean weight'
+                        background_color: 0,0,0,0.4
+
+                    Button:
+                        text: 'n'
+                        size_hint_x: 0.5
+                        background_color: 0,0,0,0.4
+
+                BoxLayout: #grid 2
+                    Button:
+                        text: 'No. of goals missed'
+                        background_color: 0,0,0,0.4
+
+                    Button:
+                        text: 'n'
+                        size_hint_x: 0.5
+                        background_color: 0,0,0,0.4
+
+                BoxLayout:  #grid 3
+                    Button:
+                        text: 'No. of Goals'
+                        background_color: 0,0,0,0.4
+
+                    Button:
+                        text: 'n'
+                        size_hint_x: 0.5
+                        background_color: 0,0,0,0.4
 

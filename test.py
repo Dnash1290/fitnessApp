@@ -13,7 +13,6 @@ from kivy.app import App
 Builder.load_file("kivy_gui/menu.kv")
 
 
-
 class Menu(Screen):
     def on_press(sedfg):
         print("dsjlfvolcs")
